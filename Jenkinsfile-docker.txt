@@ -23,7 +23,7 @@ pipeline {
             steps {
                 echo " ============== start pushing image =================="
                 sh '''
-                docker push
+                docker push blin:latest
                 '''
             }
         } 
