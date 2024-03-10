@@ -19,5 +19,13 @@ pipeline {
                 sh 'docker images blin'
             }
         }
+        stage("docker push") {
+            steps {
+                echo " ============== start pushing image =================="
+                sh '''
+                docker push latest
+                '''
+            }
+        } 
     }
 }
