@@ -15,15 +15,10 @@ pipeline {
                     sh 'docker build -t blin . '              
             }
         }
-        stage("docker test") {
+        stage("docker test exist") {
             steps {
                 echo " ============== start testing image =================="
                 sh 'docker images blin'
-            }
-        }
-        post {
-            always {
-                junit 'target/surefire-reports/report.xml'
             }
         }
     }
