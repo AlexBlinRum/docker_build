@@ -1,5 +1,6 @@
-FROM alpine
-RUN apk add --no-cache curl wget busybox-extras netcat-openbsd python py-pip
-RUN pip install awscli
-RUN apk --purge -v del py-pip
-CMD tail -f /dev/null
+FROM python:3-onbuild
+WORKDIR /usr/src/app
+COPY . .
+RUN pip install --no-cache-dir -r requirements.txt
+EXPOSE 3000
+CMD ["python", "app.py"] 
