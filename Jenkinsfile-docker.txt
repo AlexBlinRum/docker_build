@@ -7,24 +7,22 @@ pipeline {
         timestamps()
     }
     stages {
-        stage("create docker image") {
+        stage("Build docker image") {
             steps {
                 echo " ============== start building image =================="
-                    sh 'docker build -t blin . '              
+                    sh 'docker build . -t blin'              
             }
         }
-        stage("docker test exist") {
+        stage("Test docker exist") {
             steps {
                 echo " ============== start testing image =================="
                 sh 'docker images blin'
             }
         }
-        stage("docker push") {
+        stage("Deploy docker") {
             steps {
-                echo " ============== start pushing image =================="
-                sh '''
-                docker push blin:latest
-                '''
+                echo " ============== start deploing image =================="
+                sh 'docker run -p 8000:8000 -d blin'
             }
         } 
     }
